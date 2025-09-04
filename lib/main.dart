@@ -2,11 +2,11 @@ import "package:flutter/material.dart";
 import 'landing.dart';
 
 void main() => runApp(MaterialApp(
-  home: Home(),
+  home: TicketingApp(),
 ));
 
-class Home extends StatelessWidget {
-  const Home({super.key});
+class TicketingApp extends StatelessWidget {
+  const TicketingApp({super.key});
 
   @override
   Widget build(BuildContext context) {
