@@ -467,7 +467,7 @@ class _PaymentPageState extends State<PaymentPage> {
                               style: GoogleFonts.poppins(
                                 fontSize: 24,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.black87,
+                                color: Colors.black,
                               ),
                             ),
                           ],
@@ -491,7 +491,7 @@ class _PaymentPageState extends State<PaymentPage> {
                         style: GoogleFonts.poppins(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
-                          color: Colors.black87,
+                          color: Colors.black,
                         ),
                       ),
                     ],
@@ -512,7 +512,7 @@ class _PaymentPageState extends State<PaymentPage> {
                         style: GoogleFonts.poppins(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
-                          color: Colors.black87,
+                          color: Colors.black,
                         ),
                       ),
                     ],

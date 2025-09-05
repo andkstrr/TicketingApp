@@ -123,8 +123,8 @@ class HomePage extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue[900],
                     padding:
-                        const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
-                    shape: RoundedRectangleBorder(
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
+                      shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
                   ),
