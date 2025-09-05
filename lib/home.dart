@@ -40,7 +40,7 @@ class HomePage extends StatelessWidget {
           'Ticketing App',
           style: GoogleFonts.poppins(
             fontSize: 20,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w600,
           ),
         ),
       ),
