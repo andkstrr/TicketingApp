@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:ticketing_app/receipt.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -18,12 +19,10 @@ class PopupCreditPayment extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dialog(
       insetPadding: EdgeInsets.all(20.0),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(18),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
       child: Container(
         width: double.infinity,
-        height: 490,
+        height: 535,
         padding: const EdgeInsets.all(15),
         decoration: BoxDecoration(
           color: Colors.white,
@@ -52,11 +51,7 @@ class PopupCreditPayment extends StatelessWidget {
                 const Spacer(),
                 GestureDetector(
                   onTap: () => Navigator.pop(context),
-                  child: Icon(
-                    Icons.close,
-                    size: 25,
-                    color: Colors.grey[600],
-                  ),
+                  child: Icon(Icons.close, size: 25, color: Colors.grey[600]),
                 ),
               ],
             ),
@@ -81,6 +76,59 @@ class PopupCreditPayment extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 26),
+            Container(
+              width: 270,
+              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey.shade300),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('8810 7766 1234 9876', style: TextStyle(fontSize: 15)),
+                  InkWell(
+                      onTap: () {
+                        // Teks yang akan disalin
+                        final String textToCopy = '8810 7766 1234 9876';
+
+                        // Salin teks ke clipboard
+                        Clipboard.setData(ClipboardData(text: textToCopy));
+
+                        // Beri umpan balik (feedback) kepada pengguna menggunakan SnackBar
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Nomor berhasil disalin!'),
+                            duration: Duration(seconds: 2),
+                          ),
+                        );
+                    },
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                      decoration: BoxDecoration(
+                        color: Colors.blue[50],
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(Icons.copy, size: 16, color: Colors.blue[700]),
+                          SizedBox(width: 5),
+                          Text(
+                            'Salin',
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.blue[700],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.all(12),
               child: Column(
