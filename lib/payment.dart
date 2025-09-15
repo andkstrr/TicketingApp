@@ -171,12 +171,8 @@ class PaymentPage extends StatelessWidget {
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Center(
-                                    child: Icon(
-                                      Icons.money,
-                                      size: 27, 
-                                      color: Colors.green[500],
-                                    ),
+                                  Image.asset(
+                                    "assets/icons/cash.png"
                                   ),
                                   const SizedBox(width: 11),
                                   Text(
@@ -226,12 +222,8 @@ class PaymentPage extends StatelessWidget {
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Center(
-                                    child: Icon(
-                                      Icons.credit_card_outlined,
-                                      size: 27, 
-                                      color: Colors.purple[800],
-                                    ),
+                                  Image.asset(
+                                    "assets/icons/credit-card.png"
                                   ),
                                   const SizedBox(width: 11),
                                   Text(
@@ -281,12 +273,8 @@ class PaymentPage extends StatelessWidget {
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Center(
-                                    child: Icon(
-                                      Icons.qr_code_sharp,
-                                      size: 27, 
-                                      color: Colors.blue[600],
-                                    ),
+                                  Image.asset(
+                                    "assets/icons/qr-code.png"
                                   ),
                                   const SizedBox(width: 11),
                                   Text(
