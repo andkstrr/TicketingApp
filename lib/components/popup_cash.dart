@@ -74,7 +74,7 @@ class PopupCashPayment extends StatelessWidget {
                   height: 200,
                   decoration: const BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage("assets/images/credit-card.png"),
+                      image: AssetImage("assets/images/money-cash.png"),
                     ),
                   ),
                 ),
