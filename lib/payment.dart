@@ -4,9 +4,18 @@ import 'components/popup_cash.dart';
 import 'components/popup_credit.dart';
 import 'components/popup_qris.dart';
 
-class PaymentPage extends StatelessWidget {
-  const PaymentPage({super.key});
+class PaymentPage extends StatefulWidget {
+  const PaymentPage({super.key, required this.title, required this.type, required this.price});
 
+  final String title;
+  final String type;
+  final String price;
+
+  @override
+  State<PaymentPage> createState() => _PaymentPageState();
+}
+
+class _PaymentPageState extends State<PaymentPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,7 +81,7 @@ class PaymentPage extends StatelessWidget {
                             ),
                             const SizedBox(height: 4),
                             Text(
-                              "Rp 450.000",
+                              "Rp ${widget.price}",
                               style: GoogleFonts.poppins(
                                 fontSize: 24,
                                 fontWeight: FontWeight.bold,
@@ -96,7 +105,7 @@ class PaymentPage extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "Tiket untuk Dewasa - VIP",
+                        "${widget.title} - ${widget.type}",
                         style: GoogleFonts.poppins(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
