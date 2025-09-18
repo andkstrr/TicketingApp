@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'components/popup_cash.dart';
-import 'components/popup_credit.dart';
-import 'components/popup_qris.dart';
+import 'components/popup_payment.dart';
+// import 'components/popup_cash.dart';
+// import 'components/popup_credit.dart';
+// import 'components/popup_qris.dart';
 
 class PaymentPage extends StatefulWidget {
   const PaymentPage({super.key, required this.title, required this.type, required this.price});
@@ -156,7 +157,16 @@ class _PaymentPageState extends State<PaymentPage> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          PopupCashPayment.show(context);
+                          PopupPayment.show(
+                            context,
+                            popupTitle: "Pembayaran Tunai",
+                            methodTitle: "Pembayaran Tunai",
+                            methodSubtitle: "Jika pembayaran telah diterima, klik button konfirmasi pembayaran untuk menyelesaikan transaksi",
+                            imageAsset: "assets/images/money-cash.png",
+                            title: widget.title,
+                            type: widget.type,
+                            price: widget.price
+                          );
                         },
                         child: Container(
                           padding: const EdgeInsets.all(20),
@@ -207,7 +217,16 @@ class _PaymentPageState extends State<PaymentPage> {
                       const SizedBox(height: 18),
                       GestureDetector(
                         onTap: () {
-                          PopupCreditPayment.show(context);
+                          PopupPayment.show(
+                            context,
+                            popupTitle: "Pembayaran Kartu Kredit",
+                            methodTitle: "Transfer Pembayaran",
+                            methodSubtitle: "Pastikan nominal dan tujuan pembayaran sudah benar sebelum melanjutkan",
+                            imageAsset: "assets/images/credit-card.png",
+                            title: widget.title,
+                            type: widget.type,
+                            price: widget.price
+                          );
                         },
                         child: Container(
                           padding: const EdgeInsets.all(20),
@@ -258,7 +277,16 @@ class _PaymentPageState extends State<PaymentPage> {
                       const SizedBox(height: 18),
                       GestureDetector(
                         onTap: () {
-                          PopupQrisPayment.show(context);
+                          PopupPayment.show(
+                            context,
+                            popupTitle: "Pembayaran QRIS",
+                            methodTitle: "Scan QR untuk Membayar",
+                            methodSubtitle: "Gunakan aplikasi e-wallet atau mobile banking untuk scan QR di atas dan selesaikan pembayaran",
+                            imageAsset: "assets/images/qr-code.png",
+                            title: widget.title,
+                            type: widget.type,
+                            price: widget.price
+                          );
                         },
                         child: Container(
                           padding: const EdgeInsets.all(20),

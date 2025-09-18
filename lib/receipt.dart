@@ -3,7 +3,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:ticketing_app/home.dart';
 
 class ReceiptPage extends StatefulWidget {
-  const ReceiptPage({super.key});
+  const ReceiptPage({super.key, required this.title, required this.type, required this.price, required this.method});
+
+  final String title;
+  final String type;
+  final String price;
+  final String method;
 
   @override
   State<ReceiptPage> createState() => _ReceiptPageState();
@@ -111,14 +116,14 @@ class _ReceiptPageState extends State<ReceiptPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Tiket untuk Dewasa",
+                                  widget.title,
                                   style: GoogleFonts.poppins(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                                 Text(
-                                  "VIP",
+                                  widget.type,
                                   style: GoogleFonts.poppins(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w500,
@@ -129,7 +134,7 @@ class _ReceiptPageState extends State<ReceiptPage> {
                             ),
                             const Spacer(),
                             Text(
-                              "Rp. 450.000",
+                              "Rp ${widget.price}",
                               style: GoogleFonts.poppins(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w600,
@@ -151,7 +156,7 @@ class _ReceiptPageState extends State<ReceiptPage> {
                             ),
                             const Spacer(),
                             Text(
-                              "Rp. 450.000",
+                              "Rp ${widget.price}",
                               style: GoogleFonts.poppins(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,

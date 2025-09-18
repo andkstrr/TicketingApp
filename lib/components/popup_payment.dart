@@ -1,17 +1,48 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:ticketing_app/receipt.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ticketing_app/receipt.dart';
 
-class PopupCreditPayment extends StatelessWidget {
-  const PopupCreditPayment({super.key});
+class PopupPayment extends StatelessWidget {
+  final String popupTitle;
+  final String methodTitle;
+  final String methodSubtitle;
+  final String imageAsset;
+  final String title;
+  final String type;
+  final String price;
 
-  static void show(BuildContext context) {
+  const PopupPayment({
+    super.key,
+    required this.popupTitle,
+    required this.methodTitle,
+    required this.methodSubtitle,
+    required this.imageAsset,
+    required this.title,
+    required this.type,
+    required this.price,
+  });
+
+  static void show(
+    BuildContext context, {
+    required String popupTitle,
+    required String methodTitle,
+    required String methodSubtitle,
+    required String imageAsset,
+    required String title,
+    required String type,
+    required String price,
+  }) {
     showDialog(
       context: context,
-      builder: (BuildContext context) {
-        return const PopupCreditPayment();
-      },
+      builder: (context) => PopupPayment(
+        popupTitle: popupTitle,
+        methodTitle: methodTitle,
+        methodSubtitle: methodSubtitle,
+        imageAsset: imageAsset,
+        title: title,
+        type: type,
+        price: price,
+      ),
     );
   }
 
@@ -19,10 +50,12 @@ class PopupCreditPayment extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dialog(
       insetPadding: EdgeInsets.all(20.0),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(18),
+      ),
       child: Container(
         width: double.infinity,
-        height: 535,
+        height: 490,
         padding: const EdgeInsets.all(15),
         decoration: BoxDecoration(
           color: Colors.white,
@@ -41,7 +74,7 @@ class PopupCreditPayment extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  "Pembayaran Kartu Kredit",
+                  popupTitle,
                   style: GoogleFonts.poppins(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
@@ -51,7 +84,11 @@ class PopupCreditPayment extends StatelessWidget {
                 const Spacer(),
                 GestureDetector(
                   onTap: () => Navigator.pop(context),
-                  child: Icon(Icons.close, size: 25, color: Colors.grey[600]),
+                  child: Icon(
+                    Icons.close,
+                    size: 25,
+                    color: Colors.grey[600],
+                  ),
                 ),
               ],
             ),
@@ -67,74 +104,21 @@ class PopupCreditPayment extends StatelessWidget {
                 child: Container(
                   width: 200,
                   height: 200,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage("assets/images/credit-card.png"),
+                      image: AssetImage(imageAsset),
                     ),
                   ),
                 ),
               ),
             ),
             const SizedBox(height: 26),
-            Container(
-              width: 270,
-              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey.shade300),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('8810 7766 1234 9876', style: TextStyle(fontSize: 15)),
-                  InkWell(
-                      onTap: () {
-                        // Teks yang akan disalin
-                        final String textToCopy = '8810 7766 1234 9876';
-
-                        // Salin teks ke clipboard
-                        Clipboard.setData(ClipboardData(text: textToCopy));
-
-                        // Beri umpan balik (feedback) kepada pengguna menggunakan SnackBar
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('Nomor berhasil disalin!'),
-                            duration: Duration(seconds: 2),
-                          ),
-                        );
-                    },
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                      decoration: BoxDecoration(
-                        color: Colors.blue[50],
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      child: Row(
-                        children: [
-                          Icon(Icons.copy, size: 16, color: Colors.blue[700]),
-                          SizedBox(width: 5),
-                          Text(
-                            'Salin',
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.blue[700],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
             Padding(
               padding: const EdgeInsets.all(12),
               child: Column(
                 children: [
                   Text(
-                    "Transfer Pembayaran",
+                    methodTitle,
                     style: GoogleFonts.poppins(
                       fontSize: 19,
                       fontWeight: FontWeight.w600,
@@ -143,7 +127,7 @@ class PopupCreditPayment extends StatelessWidget {
                   ),
                   const SizedBox(height: 14),
                   Text(
-                    "Pastikan nominal dan tujuan pembayaran sudah benar sebelum melanjutkan",
+                    methodSubtitle,
                     textAlign: TextAlign.center,
                     style: GoogleFonts.poppins(
                       fontSize: 15,
@@ -156,7 +140,12 @@ class PopupCreditPayment extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const ReceiptPage(),
+                          builder: (context) => ReceiptPage(
+                            title: title,
+                            type: type,
+                            price: price,
+                            method: methodSubtitle,
+                          ),
                         ),
                       );
                     },

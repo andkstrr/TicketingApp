@@ -7,22 +7,22 @@ class HomePage extends StatefulWidget {
 
   final List<Map<String, dynamic>> tickets = const [
     {
-      'title': 'Tiket untuk dewasa',
+      'title': 'Tiket untuk Dewasa',
       'type': 'Reguler',
       'price': '300.000',
     },
     {
-      'title': 'Tiket untuk dewasa',
+      'title': 'Tiket untuk Dewasa',
       'type': 'VIP',
       'price': '450.000',
     },
     {
-      'title': 'Tiket untuk anak',
+      'title': 'Tiket untuk Anak',
       'type': 'Reguler',
       'price': '150.000',
     },
     {
-      'title': 'Tiket untuk anak',
+      'title': 'Tiket untuk Anak',
       'type': 'VIP',
       'price': '250.000',
     },
