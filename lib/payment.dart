@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'components/popup_payment.dart';
-// import 'components/popup_cash.dart';
-// import 'components/popup_credit.dart';
-// import 'components/popup_qris.dart';
 
 class PaymentPage extends StatefulWidget {
   const PaymentPage({super.key, required this.title, required this.type, required this.price});
