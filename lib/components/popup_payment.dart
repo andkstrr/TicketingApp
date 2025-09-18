@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/services.dart';
 import 'package:ticketing_app/receipt.dart';
 
 class PopupPayment extends StatelessWidget {
@@ -10,6 +11,8 @@ class PopupPayment extends StatelessWidget {
   final String title;
   final String type;
   final String price;
+  final String?
+  accountNumber; // ?parameter opsional -> no rekening (popup credit card)
 
   const PopupPayment({
     super.key,
@@ -20,6 +23,7 @@ class PopupPayment extends StatelessWidget {
     required this.title,
     required this.type,
     required this.price,
+    this.accountNumber,
   });
 
   static void show(
@@ -31,6 +35,7 @@ class PopupPayment extends StatelessWidget {
     required String title,
     required String type,
     required String price,
+    String? accountNumber,
   }) {
     showDialog(
       context: context,
@@ -39,6 +44,7 @@ class PopupPayment extends StatelessWidget {
         methodTitle: methodTitle,
         methodSubtitle: methodSubtitle,
         imageAsset: imageAsset,
+        accountNumber: accountNumber,
         title: title,
         type: type,
         price: price,
@@ -50,12 +56,10 @@ class PopupPayment extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dialog(
       insetPadding: EdgeInsets.all(20.0),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(18),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
       child: Container(
         width: double.infinity,
-        height: 490,
+        height: accountNumber == null ? 458 : 530,
         padding: const EdgeInsets.all(15),
         decoration: BoxDecoration(
           color: Colors.white,
@@ -84,11 +88,7 @@ class PopupPayment extends StatelessWidget {
                 const Spacer(),
                 GestureDetector(
                   onTap: () => Navigator.pop(context),
-                  child: Icon(
-                    Icons.close,
-                    size: 25,
-                    color: Colors.grey[600],
-                  ),
+                  child: Icon(Icons.close, size: 25, color: Colors.grey[600]),
                 ),
               ],
             ),
@@ -105,14 +105,73 @@ class PopupPayment extends StatelessWidget {
                   width: 200,
                   height: 200,
                   decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(imageAsset),
-                    ),
+                    image: DecorationImage(image: AssetImage(imageAsset)),
                   ),
                 ),
               ),
             ),
-            const SizedBox(height: 26),
+            if (accountNumber != null) ...[
+              const SizedBox(height: 20),
+              InkWell(
+                onTap: () {
+                  Clipboard.setData(ClipboardData(text: accountNumber ?? '-'));
+
+                  final rootContext = Navigator.of(context, rootNavigator: true)
+                      .overlay!
+                      .context;
+
+                  ScaffoldMessenger.of(rootContext).showSnackBar(
+                    const SnackBar(
+                      content: Text('Nomor rekening berhasil disalin'),
+                      duration: Duration(seconds: 2),
+                    ),
+                  );
+                },
+                child: Container(
+                  width: 270,
+                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey.shade300),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        accountNumber ?? '-', 
+                        style: TextStyle(fontSize: 15)
+                      ),
+                      Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: 5,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.blue[50],
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(Icons.copy, size: 16, color: Colors.blue[700]),
+                            SizedBox(width: 5),
+                            Text(
+                              'Salin',
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.blue[700],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+            const SizedBox(height: 2),
             Padding(
               padding: const EdgeInsets.all(12),
               child: Column(

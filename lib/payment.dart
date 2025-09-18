@@ -220,6 +220,7 @@ class _PaymentPageState extends State<PaymentPage> {
                             methodTitle: "Transfer Pembayaran",
                             methodSubtitle: "Pastikan nominal dan tujuan pembayaran sudah benar sebelum melanjutkan",
                             imageAsset: "assets/images/credit-card.png",
+                            accountNumber: "8810 7766 1234 9876",
                             title: widget.title,
                             type: widget.type,
                             price: widget.price
