@@ -104,7 +104,7 @@ class PopupPayment extends StatelessWidget {
                 child: Container(
                   width: 200,
                   height: 200,
-                  decoration: BoxDecoration(
+                  decoration: BoxDecoration(  
                     image: DecorationImage(image: AssetImage(imageAsset)),
                   ),
                 ),
